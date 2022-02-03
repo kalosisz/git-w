@@ -1,0 +1,23 @@
+name: Release
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release-please-manifest:
+    runs-on: ubuntu-latest
+    steps:
+      - id: release-please-manifest
+        uses: GoogleCloudPlatform/release-please-action@v3
+        with:
+          command: manifest
+  release-please-pr:
+    needs:
+      - release-please-manifest
+    runs-on: ubuntu-latest
+    steps:
+      - id: release-please-manifest
+        uses: GoogleCloudPlatform/release-please-action@v3
+        with:
+          command: manifest-pr
