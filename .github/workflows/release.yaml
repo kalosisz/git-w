@@ -1,0 +1,20 @@
+name: Release
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release-please:
+    name: Prepare Release notes
+    runs-on: ubuntu-latest
+    steps:
+      - id: release-please
+        uses: GoogleCloudPlatform/release-please-action@v3
+        with:
+          # A repository with a version.txt and a CHANGELOG.md
+          changelog-types: '[{"type":"feat","section":"Features","hidden":false},{"type":"fix","section":"Bug Fixes","hidden":false},{"type":"chore","section":"Miscellaneous","hidden":false}]'
+          release-type: simple
+          package-name: package1
+          bump-minor-pre-major: true
+          bump-patch-for-minor-pre-major: true
